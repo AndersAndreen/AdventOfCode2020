@@ -39,6 +39,7 @@ namespace AdventOfCode2020.Day07
 
             }
 
+            return new BagRule();
         }
 
 

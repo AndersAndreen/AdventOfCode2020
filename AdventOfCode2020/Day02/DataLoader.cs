@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace AOC_2020_02
+namespace AdventOfCode2020.Day02
 {
     internal class DataLoader
     {
@@ -1011,6 +1009,5 @@ namespace AOC_2020_02
             list.Add(new PasswordRow(2, 4, 'g', "zgggp"));
             return list;
         }
-
     }
 }

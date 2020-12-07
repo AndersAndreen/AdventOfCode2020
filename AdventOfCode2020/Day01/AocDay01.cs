@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Linq;
 
-namespace AOC2020_01
+namespace AdventOfCode2020.Day01
 {
     public class AocDay01
     {
         public static void Run()
         {
+            ConsoleOutput.Heading1("Advent of Code day 1");
+
             var entries = new int[]
             {
                 1130, 1897, 1850, 1218, 1198, 1761, 1082, 1742, 1821, 1464, 1834, 1413, 1917, 1746, 1954, 1942, 1560,
@@ -25,8 +27,8 @@ namespace AOC2020_01
 
             // Find the two entries that sum to 2020 and then multiply those two numbers together.
             var sums = entries.Where(e1 => entries.Any(e2 => e1 + e2 == 2020)).ToArray();
-            Console.WriteLine($"Added:     {sums[0] + sums[1]}");
-            Console.WriteLine($"Multiplied: {sums[0] * sums[1]}\n");
+            //Console.WriteLine($"Added:     {sums[0] + sums[1]}");
+            Console.WriteLine($"Result part 1: {sums[0] * sums[1]}");
 
             // In your expense report, what is the product of the three entries that sum to 2020?
             var sums2 = entries
@@ -34,8 +36,8 @@ namespace AOC2020_01
                     entries.Any(e2 =>
                         entries.Any(e3 => e1 + e2 + e3 == 2020)))
                 .ToArray();
-            Console.WriteLine($"Added      {sums2[0] + sums2[1] + sums2[2]}");
-            Console.WriteLine($"Multiplied {sums2[0] * sums2[1] * sums2[2]}");
+            //Console.WriteLine($"Added      {sums2[0] + sums2[1] + sums2[2]}");
+            Console.WriteLine($"Result part 2 {sums2[0] * sums2[1] * sums2[2]}");
             Console.ReadKey();
         }
 

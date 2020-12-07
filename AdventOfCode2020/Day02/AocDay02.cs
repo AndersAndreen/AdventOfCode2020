@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace AOC_2020_02
+namespace AdventOfCode2020.Day02
 {
-    class AocDay02
+    public class AocDay02
     {
         public static void Run()
         {
+            ConsoleOutput.Heading1("Advent of Code day 2");
             // How many passwords are valid according to their policies?
             List<PasswordRow> list = DataLoader.BuildList();
             var numValidPasswords1 = list.Count(row => row.IsValid1);
-            Console.WriteLine($"Part 1 number of valid passwords: {numValidPasswords1}");
+            Console.WriteLine($"Result part 1: {numValidPasswords1}");
 
             var numValidPasswords2 = list.Count(row => row.IsValid2);
-            Console.WriteLine($"Part 2 number of valid passwords: {numValidPasswords2}");
+            Console.WriteLine($"Result part 2: {numValidPasswords2}");
         }
     }
 
-    class PasswordRow
+    public class PasswordRow
     {
         public int Min { get; }
         public int Max { get; }
