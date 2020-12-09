@@ -34,3 +34,4 @@ D:\GitHub\AdventOfCode2020\AdventOfCode2020\obj\Debug\netcoreapp3.1\AdventOfCode
 D:\GitHub\AdventOfCode2020\AdventOfCode2020\obj\Debug\netcoreapp3.1\AdventOfCode2020.pdb
 D:\GitHub\AdventOfCode2020\AdventOfCode2020\obj\Debug\netcoreapp3.1\AdventOfCode2020.genruntimeconfig.cache
 D:\GitHub\AdventOfCode2020\AdventOfCode2020\obj\Debug\netcoreapp3.1\AdventOfCode2020.csprojAssemblyReference.cache
+D:\GitHub\AdventOfCode2020\AdventOfCode2020\bin\Debug\netcoreapp3.1\Day08\AocDay08.txt
