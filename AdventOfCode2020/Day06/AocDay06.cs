@@ -27,11 +27,11 @@ namespace AdventOfCode2020.Day06
 
             var resultStep2V1 = answers
                 .Select(group => GetCommonAnswersForGroup2(group.ToList()).Count());
-            Console.WriteLine($"Result part 2 (V1): {resultStep2V1.Sum()}");
+            Console.WriteLine($"Result part 2 (Version 1): {resultStep2V1.Sum()}");
 
             var resultStep2V2 = answers
                 .Select(group => GetCommonAnswersForGroup2(group.ToList()).Count());
-            Console.WriteLine($"Result part 2 (V2): {resultStep2V2.Sum()}");
+            Console.WriteLine($"Result part 2 (Version 2): {resultStep2V2.Sum()}");
         }
 
         private static IEnumerable<char> GetCommonAnswersForGroup1(ICollection<IEnumerable<char>> group)

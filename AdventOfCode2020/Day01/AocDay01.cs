@@ -27,8 +27,8 @@ namespace AdventOfCode2020.Day01
 
             // Find the two entries that sum to 2020 and then multiply those two numbers together.
             var sums = entries.Where(e1 => entries.Any(e2 => e1 + e2 == 2020)).ToArray();
-            //Console.WriteLine($"Added:     {sums[0] + sums[1]}");
-            Console.WriteLine($"Result part 1: {sums[0] * sums[1]}");
+            var resultStep1 = sums[0] * sums[1];
+            Console.WriteLine($"Result part 1: {resultStep1}");
 
             // In your expense report, what is the product of the three entries that sum to 2020?
             var sums2 = entries
@@ -36,8 +36,8 @@ namespace AdventOfCode2020.Day01
                     entries.Any(e2 =>
                         entries.Any(e3 => e1 + e2 + e3 == 2020)))
                 .ToArray();
-            //Console.WriteLine($"Added      {sums2[0] + sums2[1] + sums2[2]}");
-            Console.WriteLine($"Result part 2 {sums2[0] * sums2[1] * sums2[2]}");
+            var resultStep2 = sums2[0] * sums2[1] * sums2[2];
+            Console.WriteLine($"Result part 2: {resultStep2}");
             Console.ReadKey();
         }
 

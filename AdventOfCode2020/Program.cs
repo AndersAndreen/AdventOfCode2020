@@ -5,8 +5,10 @@ using AdventOfCode2020.Day04;
 using AdventOfCode2020.Day05;
 using AdventOfCode2020.Day06;
 using AdventOfCode2020.Day07;
-using System;
 using AdventOfCode2020.Day08;
+using AdventOfCode2020.Day09;
+using AdventOfCode2020.Day10;
+using System;
 
 namespace AdventOfCode2020
 {
@@ -14,7 +16,10 @@ namespace AdventOfCode2020
     {
         static void Main()
         {
-            AocDay08.Run();
+            //AocDay11.Run();
+            AocDay10.Run();
+            AocDay09.Run();
+            //AocDay08.Run();
             //AocDay07.Run();
             //AocDay06.Run();
             //AocDay05.Run();
