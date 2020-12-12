@@ -20,21 +20,22 @@ namespace AdventOfCode2020.Day10
                     .OrderBy(value => value)
             ).ToArray();
 
-            //What is the number of 1-jolt differences multiplied by the number of 3-jolt differences?
+            // Question: "What is the number of 1-jolt differences multiplied by the number of 3-jolt differences?"
             var resultStep1 = GetNumberOfJoltDifferences(input);
             Console.WriteLine($"Result part 1: {resultStep1.Item1 * resultStep1.Item2}");
 
-            // What is the total number of distinct ways you can arrange the adapters to connect the charging outlet to your device?
+            // Question: "What is the total number of distinct ways you can arrange the adapters to connect the charging outlet to your device?"
 
-            // As it's written in the problem: "there must be more than a trillion valid ways" to arrange the adapters. 
+            // As the problem states: "there must be more than a trillion valid ways" to arrange the adapters. 
             // But: The limitation of a maximum difference of 3 jolts between adapters has the effect that
-            // whereever there is a difference of three jolts between two succeeding adapters there is only one way to go.
-            // This cuts off the combination tree, and what we end up with is really a set of independent combination trees chained together.
-            // So, by splitting the list wherever there is a difference of 3 jolts, then parse each combination tree.
-            // Finally we multiply the combination sums with each other to find the total number of combinations possible.
+            // whereever there is a difference of three jolts between two succeeding adapters there is only one way to go between them.
+            // This cuts off the combination tree, and what we end up with is a set of independent combination trees chained together.
+            // So, by splitting the list wherever there is a difference of 3 jolts and then parse each combination tree we 
+            // end up with a list of choice sums, one for each section. If we then multiply the combination sums with each other
+            // We get the total number of combinations possible.
             var resultStep2 =
                 DivideInputToGroups(input)
-                .Select(group2 => new AdapterCombinationTreeV4(group2[1..], group2[0]).CombinationsCount)
+                .Select(group2 => new AdapterCombinationTree(group2[1..], group2[0]).CombinationsCount)
                 .Aggregate((x, y) => x * y);
             Console.WriteLine($"Result part 2: {resultStep2}");
         }
