@@ -19,8 +19,8 @@ namespace AdventOfCode2020
     {
         static void Main()
         {
-            //AocDay13.Run();
-            AocDay12.Run();
+            AocDay13.Run();
+            //AocDay12.Run();
             //AocDay11.Run();
             //AocDay10.Run();
             //AocDay09.Run();

@@ -13,21 +13,15 @@ namespace AdventOfCode2020.Day12
 
             var input = File
                 .ReadAllLines(@"Day12\AocDay12.txt")
-                .ToArray();
+                .ToList();
+
             var boat1 = new Boat1();
-            foreach (var command in input)
-            {
-                boat1.Navigate(command);
-            }
+            input.ForEach(boat1.Navigate);
             var resultStep1 = boat1.ManhattanDistance;
             Console.WriteLine($"Result part 1: {resultStep1}");
 
             var boat2 = new Boat2();
-            foreach (var command in input)
-            {
-                boat2.Navigate(command);
-            }
-            var pos = boat2.Position;
+            input.ForEach(boat2.Navigate);
             var resultStep2 = boat2.ManhattanDistance;
             Console.WriteLine($"Result part 2: {resultStep2}");
         }
@@ -40,7 +34,7 @@ namespace AdventOfCode2020.Day12
         private int _direction;
         private readonly Dictionary<char, Action<int>> _commands;
 
-        public Boat1() //2879
+        public Boat1() 
         {
             _commands = new Dictionary<char, Action<int>>
             {
@@ -50,8 +44,7 @@ namespace AdventOfCode2020.Day12
                 {'W', param => Position = (Position.X - param, Position.Y)},
                 {'L', param => _direction = (_direction + param) % 360},
                 {'R', param => _direction = (_direction - param) % 360},
-                {
-                    'F', param =>
+                {'F', param =>
                     {
                         var dx = (int) Math.Round(Math.Cos(Math.PI / 180 * _direction) * param);
                         var dy = (int) Math.Round(Math.Sin(Math.PI / 180 * _direction) * param);
@@ -97,5 +90,3 @@ namespace AdventOfCode2020.Day12
         public void Navigate(string command) => _commands[command[0]](int.Parse(command[1..]));
     }
 }
-
-
