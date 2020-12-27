@@ -141,3 +141,7 @@ _NCrunch*
 bin
 obj
 packages
+
+/bin/*
+/obj/*
+/packages/*
