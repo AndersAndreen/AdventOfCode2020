@@ -25,8 +25,8 @@ namespace AdventOfCode2020.Day16
     public class TicketSolver
     {
         private readonly List<TicketRule> _rules = new List<TicketRule>();
-        private readonly int[] _yourTicket = new int[]{};
-        private List<int[]> _tickets = new List<int[]>();
+        private readonly int[] _yourTicket = new int[] { };
+        private readonly List<int[]> _tickets = new List<int[]>();
 
         public TicketSolver(string[] input)
         {
@@ -63,7 +63,6 @@ namespace AdventOfCode2020.Day16
         public long SolvePart2()
         {
             var correctTickets = _tickets.Where(nrs => nrs.All(nr => _rules.Any(rule => rule.Matches(nr)))).ToList();
-            //correctTickets.Add(_yourTicket);
             var numFields = _tickets.First().Length;
             var fieldNames = new List<(int, string)>();
             var fieldNameCandidates = new List<(int, string[])>();
@@ -86,36 +85,30 @@ namespace AdventOfCode2020.Day16
                     c.Item2.Where(name => !fieldNames.Select(fn => fn.Item2).Contains(name)).ToArray())).ToList();
             } while (fieldNameCandidates.Count > 0);
 
-
-            var result = fieldNames
+            return fieldNames
                 .Where(fn => fn.Item2.StartsWith("departure"))
                 .Select(fn => (long)_yourTicket[fn.Item1])
                 .Aggregate((long accumulator, long item) => accumulator * item);
-            return result;
         }
     }
 
     internal class TicketRule
     {
         public string RuleName;
-        public (int, int) rule1;
-        public (int, int) rule2;
+        private readonly (int, int) _rule1;
+        private readonly (int, int) _rule2;
         public TicketRule(string row)
         {
             var x = row.Split(':');
             RuleName = x[0];
             var y = x[1].Split("or");
             var r1 = y[0].Split('-').Select(int.Parse).ToArray();
-            rule1 = (r1[0], r1[1]);
+            _rule1 = (r1[0], r1[1]);
             var r2 = y[1].Split('-').Select(int.Parse).ToArray();
-            rule2 = (r2[0], r2[1]);
+            _rule2 = (r2[0], r2[1]);
         }
-
-        public bool Matches(int value)
-        {
-            var xx = (value >= rule1.Item1 && value <= rule1.Item2)
-                || (value >= rule2.Item1 && value <= rule2.Item2);
-            return xx;
-        }
+        public bool Matches(int value) =>
+            (value >= _rule1.Item1 && value <= _rule1.Item2)
+            || (value >= _rule2.Item1 && value <= _rule2.Item2);
     }
 }
