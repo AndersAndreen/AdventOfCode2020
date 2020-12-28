@@ -12,6 +12,7 @@ using AdventOfCode2020.Day11;
 using AdventOfCode2020.Day12;
 using AdventOfCode2020.Day13;
 using AdventOfCode2020.Day14;
+using AdventOfCode2020.Day15;
 using System;
 
 namespace AdventOfCode2020
@@ -20,7 +21,8 @@ namespace AdventOfCode2020
     {
         static void Main()
         {
-            AocDay14.Run();
+            AocDay15.Run();
+            //AocDay14.Run();
             //AocDay13.Run();
             //AocDay12.Run();
             //AocDay11.Run();
@@ -34,6 +36,7 @@ namespace AdventOfCode2020
             //AocDay03.Run();
             //AocDay02.Run();
             //AocDay01.Run();
+            Console.WriteLine("Done.");
             Console.ReadKey();
         }
     }
