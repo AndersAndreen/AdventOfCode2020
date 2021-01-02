@@ -16,9 +16,11 @@ namespace AdventOfCode2020.Day18
 
             var result1 = input.Sum(row => new Scope(row, Rule.Part1).Calc());
             Console.WriteLine($"Result part 1: {result1}");
+            Console.WriteLine($"Rätt svar:     280014646144\n");
 
             var result2 = input.Sum(row => new Scope(row, Rule.Part2).Calc());
             Console.WriteLine($"Result part 2: {result2}");
+            Console.WriteLine($"Rätt svar:     9966990988262\n");
         }
 
         public enum Rule { Part1, Part2 }
@@ -34,39 +36,14 @@ namespace AdventOfCode2020.Day18
             {
                 _queue = new Queue<char>(input.Replace(" ", "").ToCharArray());
                 _stopCondition = () => _queue.Count > 0;
-                Init(rule);
+                InitOperations(rule);
             }
 
             private Scope(Queue<char> queue, Rule rule, Func<bool> stopCondition)
             {
                 _queue = queue;
                 _stopCondition = stopCondition;
-                Init(rule);
-            }
-
-            private void Init(Rule rule)
-            {
-                foreach (var key in "0123456789")
-                {
-                    var val = int.Parse(key.ToString());
-                    _operations.Add(key, () => val);
-                }
-                switch (rule)
-                {
-                    case Rule.Part1:
-                        _operations.Add('*', () => _sum *= _operations[_queue.Dequeue()]());
-                        break;
-                    default:
-                        _operations.Add('*', () => _sum *= new Scope(_queue, rule, () => _queue.Count > 0 && _queue.Peek() != '*' && _queue.Peek() != ')').Calc());
-                        break;
-                }
-                _operations.Add('+', () => _sum += _operations[_queue.Dequeue()]());
-                _operations.Add('(', () => new Scope(_queue, rule, () => (_queue.Peek() != ')' || _queue.Dequeue() != ')')).Calc());
-                _operations.Add(')', () =>
-                {
-                    _queue.Dequeue();
-                    return _sum;
-                });
+                InitOperations(rule);
             }
 
             public long Calc()
@@ -77,6 +54,28 @@ namespace AdventOfCode2020.Day18
                     _operations[_queue.Dequeue()]();
                 }
                 return _sum;
+            }
+
+            private void InitOperations(Rule rule)
+            {
+                "0123456789".ToList().ForEach(key => _operations.Add(key, () => int.Parse(key.ToString())));
+                if (rule == Rule.Part1)
+                {
+                    _operations.Add('*', () => _sum *= _operations[_queue.Dequeue()]());
+                }
+                else
+                {
+                    _operations.Add('*',
+                        () => _sum *= new Scope(_queue, rule,
+                            () => _queue.Count > 0 && _queue.Peek() != '*' && _queue.Peek() != ')').Calc());
+                }
+                _operations.Add('+', () => _sum += _operations[_queue.Dequeue()]());
+                _operations.Add('(', () => new Scope(_queue, rule, () => (_queue.Peek() != ')' || _queue.Dequeue() != ')')).Calc());
+                _operations.Add(')', () =>
+                {
+                    _queue.Dequeue();
+                    return _sum;
+                });
             }
         }
     }
